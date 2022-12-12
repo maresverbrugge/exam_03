@@ -8,7 +8,7 @@ char **ft_split(char *str)
     int pntr = 0;
     int pntr_index;
 
-    result = malloc((sizeof(char *))*256);
+    result = malloc((sizeof(char *))*256); // malloc(1024) werkt ook?
     if (!result)
         return NULL;
     while (str[index] == '\n' || str[index] == '\t' || str[index] == ' ')
@@ -16,7 +16,7 @@ char **ft_split(char *str)
     while(str[index])
     {
         pntr_index = 0;
-        result[pntr] = malloc((sizeof(char))*4096);
+        result[pntr] = malloc((sizeof(char))*4096); // malloc(1024) werkt ook?
         if (!result[pntr])
             return NULL;
         while (str[index] != '\n' && str[index] != '\t' && str[index] != ' ' && str[index])
