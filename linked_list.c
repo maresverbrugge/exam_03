@@ -1,4 +1,4 @@
-#include "list.h"
+#include "list_sort.h"
 #include <stdio.h> // for printf
 #include <stdlib.h> // for malloc
 
@@ -17,7 +17,7 @@ void print_list(t_list *list)
     }
 
 // add element to end of list:
-void push_to_end(t_list *list)
+void push_to_end(t_list *list, int data)
 {
     // set pointer for current element
     t_list *current = list;
@@ -27,7 +27,7 @@ void push_to_end(t_list *list)
     // add new element/node
     current->next = malloc(sizeof(t_list));
     // set data of new element/node
-    current->next->data = 2;
+    current->next->data = data;
     current->next->next = NULL;
 }
 
@@ -35,8 +35,7 @@ void push_to_end(t_list *list)
 void push_to_begin(t_list **list, int n)
 {
     // create new item
-    t_list *new_elem;
-    new_elem = malloc(sizeof(t_list));
+    t_list *new_elem = malloc(sizeof(t_list));
     // set data of element/node
     new_elem->data = n;
     // link new element to point to the head of the list
@@ -134,7 +133,7 @@ int main(void)
     list->next = NULL;
 
     print_list(list);
-    push_to_end(list);
+    push_to_end(list, 2);
     print_list(list);
     push_to_begin(&list, 5);
     push_to_begin(&list, 6);
