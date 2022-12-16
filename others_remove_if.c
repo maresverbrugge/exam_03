@@ -29,16 +29,25 @@ void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 	t_list *temp;
 
 	current = *begin_list;
-	while(current->next != NULL)
+	while(current && cmp((current)->data, data_ref) == 0)
+	{
+		temp = current->next;
+		free(current);
+		current = temp;
+	}
+	*begin_list = current;
+	while(current && current->next)
 	{
 		if (cmp(current->next->data, data_ref) == 0)
-            break ;
-        current = current->next;
+		{
+			temp = current->next->next;
+			free(current->next);
+			current->next = temp;
+		}
+		current = current->next;
 	}
-	temp = current->next;
-	current->next = temp->next;
-	free(temp);
 }
+
 
 int main(void)
 {
